@@ -1,10 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:op_tracker/models/calculator.dart';
+import 'package:op_tracker/models/decoder/code_to_list_and_operation_decoder.dart';
+import 'package:op_tracker/models/decoder/code_to_list_decoder.dart';
+import 'package:op_tracker/models/decoder/list_to_code_decoder.dart';
 
 class CalcPageProvider with ChangeNotifier{
   String str = "";
   String ans = "";
-  Calculator _calculator = Calculator();
+  ListToCodeDecoder listCodeDecoder = ListToCodeDecoder();
+  CodeToListDecoder codeToListDecoder = CodeToListDecoder();
   void buttonPressed(String button){
     int t  = int.tryParse(button);
     if(t != null){
@@ -30,17 +34,17 @@ class CalcPageProvider with ChangeNotifier{
         case "×": break;
         case "-":break;
         case "+" :break;
-        case "." :
-          if(!str.endsWith(".")&(str.isNotEmpty)){
-            str+=".";
+        case "," :
+          if(!str.endsWith(",")&(str.isNotEmpty)){
+            str+=",";
           }
           break;
         case "=": break;
         case "listToCode":
-          ans = _calculator.listToCode(str);
+          ans = listCodeDecoder.calc(str);
           break;
         case "codeToList":
-          ans = _calculator.codeToList(str);
+          ans = codeToListDecoder.calc(str);
           break;
         case "codeToOpers":
           break;

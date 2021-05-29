@@ -1,39 +1,36 @@
-
-
 import 'dart:math';
 
 import 'package:op_tracker/resources/constants.dart';
-
-class Calculator{
-
-  String listToCode(String str){
-    if(str.isEmpty || !str.contains('.')) return "nothing to convert";
-    List<String> numbers = str.split(".");
-    BigInt ans = BigInt.one;
-    for(int i = 0; i < numbers.length; i++){
-      int l = int.tryParse(numbers[i]);
-      if(l == null) return 'not a number';
-      ans *= BigInt.from(pow(primes[i], l+1));
+import 'package:op_tracker/resources/exceptions.dart';
+///Main computing entity for those codes
+class Calculator {
+  ///Encoding List of values into int code
+  BigInt encode(List<int> values) {
+    BigInt result = BigInt.one;
+    for (int i = 0; i < values.length; ++i) {
+      result *= BigInt.from(pow(primes[i], values[i] + 1));
     }
-    return ans.toString();
+    return result;
   }
-  String codeToList(String str){
-    String ans = "[";
-    BigInt number = BigInt.tryParse(str);
-    if(number == null) return "can't convert";
-    int index = 0;
-    while(number > BigInt.one){
-      BigInt prime = BigInt.from(primes[index]);
+
+  ///Returning lise-like presentation of code
+  List<int> decode(BigInt code) {
+    List<int> res = [];
+
+    for (int i = 0; code != BigInt.one; ++i) {
       int counter = 0;
-      while(number % prime == BigInt.zero){
-        number = BigInt.from(number/prime);
-        print(prime);
+      if (i >= primes.length || BigInt.from(primes[i]) > code) {
+        throw InvalidCode();
+      }
+      while (code % BigInt.from(primes[i]) == BigInt.zero) {
+        code ~/= BigInt.from(primes[i]);
         counter++;
       }
-      ans += "${counter - 1}, ";
-      index++;
+      if (counter == 0) {
+        throw InvalidCode();
+      }
+      res.add(counter - 1);
     }
-    ans =  ans.substring(0, ans.length-2) + "]";
-    return ans;
+    return res;
   }
 }

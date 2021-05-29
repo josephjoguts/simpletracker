@@ -95,7 +95,7 @@ class KeyBoard extends StatelessWidget {
       [
         GridButtonItem(title: "000",color: Colors.white,),
         GridButtonItem(title: "0",color: Colors.white,),
-        GridButtonItem(title: ".",color: Colors.white,),
+        GridButtonItem(title: ",",color: Colors.white,),
         GridButtonItem(title: "=",color: Colors.blue,textStyle: TextStyle(color: Colors.white, fontSize: 24),
         longPressValue: "codeToOpers"),
       ],
