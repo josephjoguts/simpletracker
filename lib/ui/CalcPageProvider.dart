@@ -27,7 +27,7 @@ class CalcPageProvider with ChangeNotifier{
         case "⌫": break;
         case "√":break;
         case "/" :break;
-        case "X": break;
+        case "×": break;
         case "-":break;
         case "+" :break;
         case "." :

@@ -17,13 +17,13 @@ class CalcPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
               Consumer<CalcPageProvider>(builder: (context,calc,child){
-               return Padding(padding: EdgeInsets.only(top: 30),
+               return Padding(padding: EdgeInsets.only(top: 48, bottom: 32, right: 16),
                   child: Text(
                     calc.str,
                     textDirection: TextDirection.ltr,
                     style: TextStyle(
                       fontFamily: "Roboto",
-                      fontSize: 26
+                      fontSize: 52
                     ),
 
 
@@ -78,7 +78,7 @@ class KeyBoard extends StatelessWidget {
         GridButtonItem(title: "7",color: Colors.white,),
         GridButtonItem(title: "8",color: Colors.white,),
         GridButtonItem(title: "9",color: Colors.white,),
-        GridButtonItem(title: "X",),
+        GridButtonItem(title: "×",),
       ],
       [
         GridButtonItem(title: "4",color: Colors.white,),

@@ -36,7 +36,4 @@ class Calculator{
     ans =  ans.substring(0, ans.length-2) + "]";
     return ans;
   }
-  List<String>codeToOpers(String str){
-    return [];
-  }
 }
